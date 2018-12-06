@@ -1,6 +1,6 @@
 
 import { NativeModules } from 'react-native';
 
-const { RNReactSocket } = NativeModules;
+const { ReactSocket } = NativeModules;
 
-export default RNReactSocket;
+export default ReactSocket;

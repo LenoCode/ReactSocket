@@ -5,11 +5,12 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
-import android.widget.Toast;
+import com.reactlibrary.socketWrapper.SocketWrapper;
 
 public class RNReactSocketModule extends ReactContextBaseJavaModule {
 
   private final ReactApplicationContext reactContext;
+  private final SocketWrapper socketWrapper = new SocketWrapper();
 
   public RNReactSocketModule(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -17,13 +18,13 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public String println(){
-    Toast.makeText(getReactApplicationContext(), "KING KONG JE TU", Toast.LENGTH_LONG).show();
-    return "King kong cale";
+  public void connectToServer(String host,int port,Callback callback){
+      socketWrapper.connectToServer(host,port,callback);
   }
+
 
   @Override
   public String getName() {
-    return "RNReactSocket";
+    return "ReactSocket";
   }
 }
