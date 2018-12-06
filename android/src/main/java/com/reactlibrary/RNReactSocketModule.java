@@ -16,8 +16,10 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void println(){
+  public String println(){
+    Log.d("OVO JE MOJE MJESTO","OVO JE SVE MOJE A NIJE TVOJE");
     System.out.println("SVE JE U REDU");
+    return "King kong cale";
   }
 
   @Override
