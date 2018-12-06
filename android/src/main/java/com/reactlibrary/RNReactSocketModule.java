@@ -15,6 +15,11 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
     this.reactContext = reactContext;
   }
 
+  @ReactMethod
+  public void println(){
+    System.out.println("SVE JE U REDU");
+  }
+
   @Override
   public String getName() {
     return "RNReactSocket";
