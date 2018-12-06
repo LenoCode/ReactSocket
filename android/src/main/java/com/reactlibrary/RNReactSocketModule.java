@@ -5,6 +5,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
+import android.widget.Toast;
 
 public class RNReactSocketModule extends ReactContextBaseJavaModule {
 
@@ -17,7 +18,7 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public String println(){
-    System.out.println("SVE JE U REDU");
+    Toast.makeText(getReactApplicationContext(), "KING KONG JE TU", Toast.LENGTH_LONG).show();
     return "King kong cale";
   }
 
