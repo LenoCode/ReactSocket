@@ -31,7 +31,8 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void addNotificationMethods(ReadableMap map){
     if (map.hasKey("login")){
-      Toast.makeText(reactContext, "true je ovo", Toast.LENGTH_SHORT).show();
+      Toast.makeText(reactContext, map.getType("login").name(), Toast.LENGTH_SHORT).show();
+
     }
   }
 
