@@ -27,15 +27,8 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
       socketWrapper.connectToServer(host,port,callback);
   }
   @ReactMethod
-  public void addNotificationMethods(String object,Callback callback){
-    try {
-      JSONObject jsonObject = new JSONObject(object);
-      Callback callbacks = (Callback) jsonObject.get("test");
-      callbacks.invoke("SVE JE U REDU");
-    } catch (JSONException e) {
-      e.printStackTrace();
-      callback.invoke("METODA JE PALA OVO JE MESSAGE  "+object+"   "+e.getLocalizedMessage());
-    }
+  public void addNotificationMethods(Object something,Callback callback){
+      callback.invoke(something.getClass().toString());
   }
 
 
