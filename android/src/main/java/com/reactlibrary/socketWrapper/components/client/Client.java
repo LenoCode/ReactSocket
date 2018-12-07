@@ -17,9 +17,9 @@ public class Client {
     private ClientSocket clientSocket;
 
 
-    public ThreadIdHolder configureSocket(String host, int port){
+    public ThreadIdHolder configureSocket(String host, int port,DataTradeModel[] dataTradeModels){
         clientSocket = new ClientSocket();
-        return clientSocket.configure(host,port,initClientNotificationer());
+        return clientSocket.configure(host,port,initClientNotificationer(dataTradeModels));
     }
 
     public boolean isConnectedToServer(){
@@ -45,16 +45,11 @@ public class Client {
     }
 
 
-    private ClientNotificationer initClientNotificationer(){
+    private ClientNotificationer initClientNotificationer(DataTradeModel[] dataTradeModels){
         ExternalContextInitializator contextInitializator = new ExternalContextInitializator();
-        DataTradeModel[] dataTradeModels = setupDataTradeModels();
         return new ClientNotificationer(dataTradeModels,contextInitializator);
     }
 
 
-    private DataTradeModel[] setupDataTradeModels(){
-        return new DataTradeModel[]{
 
-        };
-    }
 }

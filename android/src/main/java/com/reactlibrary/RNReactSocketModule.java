@@ -1,13 +1,16 @@
 
 package com.reactlibrary;
 
-import android.telecom.Call;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.WritableMap;
 import com.reactlibrary.socketWrapper.SocketWrapper;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class RNReactSocketModule extends ReactContextBaseJavaModule {
 
@@ -22,6 +25,16 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void connectToServer(String host,int port,Callback callback){
       socketWrapper.connectToServer(host,port,callback);
+  }
+  @ReactMethod
+  public void addNotificationMethods(String object){
+    try {
+      JSONObject jsonObject = new JSONObject(object);
+      Callback callback = (Callback) jsonObject.get("test");
+      callback.invoke("SVE JE U REDU");
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
   }
 
 

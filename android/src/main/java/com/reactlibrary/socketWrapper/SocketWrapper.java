@@ -15,7 +15,7 @@ public class SocketWrapper {
     }
 
     public void connectToServer(String host,int port,Callback callback){
-        ThreadIdHolder threadIdHolder = client.configureSocket(host,port);
+        ThreadIdHolder threadIdHolder = client.configureSocket(host,port,null);
         AsyncCommunicator asyncCommunicator = AsyncCommunicator.getAsyncCommunicator();
 
         boolean connection = asyncCommunicator.waitForFlagAndRemove(threadIdHolder.getThreadId(),"Connection");
