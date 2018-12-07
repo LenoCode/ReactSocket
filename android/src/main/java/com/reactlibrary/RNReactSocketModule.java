@@ -27,8 +27,8 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
       socketWrapper.connectToServer(host,port,callback);
   }
   @ReactMethod
-  public void addNotificationMethods(Object something,Callback callback){
-      callback.invoke(something.getClass().toString());
+  public void addNotificationMethods(ReadableMap map){
+
   }
 
 
