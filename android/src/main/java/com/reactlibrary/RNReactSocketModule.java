@@ -27,11 +27,12 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
       socketWrapper.connectToServer(host,port,callback);
   }
   @ReactMethod
-  public void addNotificationMethods(String object){
+  public void addNotificationMethods(String object,Callback callback){
     try {
       JSONObject jsonObject = new JSONObject(object);
-      Callback callback = (Callback) jsonObject.get("test");
-      callback.invoke("SVE JE U REDU");
+      Callback callbacks = (Callback) jsonObject.get("test");
+      callback.invoke("OVO JE SAMO DA PROVJERIM DA LI SE METODA UOPCE POZOVE");
+      callbacks.invoke("SVE JE U REDU");
     } catch (JSONException e) {
       e.printStackTrace();
     }
