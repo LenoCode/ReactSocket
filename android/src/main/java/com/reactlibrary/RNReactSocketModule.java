@@ -19,7 +19,7 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void connectToServer(String host,int port,Callback callback){
-      socketWrapper.connectToServer(host,port,callback);
+      callback.invoke("STATUS JE TRUE FILIPE");
   }
 
 
