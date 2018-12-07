@@ -30,8 +30,8 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
     socketWrapper.addCallbackNotification(methodIdent,callback);
   }
   @ReactMethod
-  public void sendMessageToServer(String classIdent,String methodIdent,String message){
-    socketWrapper.sendMessageToServer(classIdent,methodIdent,message);
+  public void sendMessageToServer(String classIdent,String methodIdent,String message,Callback callback){
+    socketWrapper.sendMessageToServer(classIdent,methodIdent,message,callback);
   }
 
 

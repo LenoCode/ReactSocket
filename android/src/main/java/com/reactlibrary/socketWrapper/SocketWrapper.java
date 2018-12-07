@@ -12,6 +12,7 @@ import async_communicator.thread_id_holder.ThreadIdHolder;
 import socket_installer.SI_behavior.interfaces.notification.DataTradeModel;
 
 public class SocketWrapper {
+    private final AsyncCommunicator asyncCommunicator = AsyncCommunicator.getAsyncCommunicator();
     private final Client client;
     private final Map<String,Callback> callbacks;
     private final DataTradeModel dataTradeModel[];
@@ -28,8 +29,10 @@ public class SocketWrapper {
         callbacks.put(methodIdent,callback);
     }
 
-    public void sendMessageToServer(String classIdent,String methodIdent,String message){
-        client.sendMessageToServer(classIdent,methodIdent,message);
+    public void sendMessageToServer(String classIdent,String methodIdent,String message,Callback callback){
+        ThreadIdHolder idHolder = client.sendMessageToServer(classIdent,methodIdent,message);
+        boolean flag = asyncCommunicator.waitForFlagAndRemove(idHolder.getThreadId(),"SendMessageStatus");
+        callback.invoke(flag);
     }
 
     public void connectToServer(String host,int port,Callback callback){

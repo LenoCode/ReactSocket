@@ -29,12 +29,13 @@ public class DataTransferThreads extends UserMethod {
 
         try {
             clientCreatedSocket.runSocketNoStreamOpen(classIdent,methodIdent,dataToSend);
+            asyncCommunicator.addFlag(Thread.currentThread().getId(),"SendMessageStatus",true);
         } catch (IOException e) {
             Log.d("LENOO",e.getLocalizedMessage());
-            asyncCommunicator.addFlag(Thread.currentThread().getId(),"IOException",true);
+            asyncCommunicator.addFlag(Thread.currentThread().getId(),"SendMessageStatus",false);
         } catch (SocketExceptions socketExceptions) {
             Log.d("LENOO",socketExceptions.getLocalizedMessage());
-            asyncCommunicator.addFlag(Thread.currentThread().getId(),"SocketException",true);
+            asyncCommunicator.addFlag(Thread.currentThread().getId(),"SendMessageStatus",false);
         }
     }
 
