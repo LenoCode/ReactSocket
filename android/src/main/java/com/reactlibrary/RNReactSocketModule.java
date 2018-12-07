@@ -1,6 +1,8 @@
 
 package com.reactlibrary;
 
+import android.telecom.Call;
+
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -21,6 +23,12 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
   public void connectToServer(String host,int port,Callback callback){
       callback.invoke("STATUS JE TRUE FILIPE");
   }
+
+  @ReactMethod
+  public void test(Callback callback){
+    callback.invoke("King kong");
+  }
+
 
 
   @Override
