@@ -34,7 +34,7 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
       callbacks.invoke("SVE JE U REDU");
     } catch (JSONException e) {
       e.printStackTrace();
-      callback.invoke("METODA JE PALA OVO JE MESSAGE "+e.getLocalizedMessage());
+      callback.invoke("METODA JE PALA OVO JE MESSAGE  "+object+"   "+e.getLocalizedMessage());
     }
   }
 
