@@ -2,6 +2,8 @@
 package com.reactlibrary;
 
 
+import android.widget.Toast;
+
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -28,7 +30,9 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
   }
   @ReactMethod
   public void addNotificationMethods(ReadableMap map){
-
+    if (map.hasKey("login")){
+      Toast.makeText(reactContext, "true je ovo", Toast.LENGTH_SHORT).show();
+    }
   }
 
 
