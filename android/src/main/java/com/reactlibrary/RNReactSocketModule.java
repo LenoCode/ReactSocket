@@ -10,14 +10,19 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
 import com.reactlibrary.socketWrapper.SocketWrapper;
 
+import socket_installer.SI_behavior.interfaces.notification.DataTradeModel;
+
 public class RNReactSocketModule extends ReactContextBaseJavaModule {
 
   private final ReactApplicationContext reactContext;
   private final SocketWrapper socketWrapper = new SocketWrapper();
 
-  public RNReactSocketModule(ReactApplicationContext reactContext) {
+  public RNReactSocketModule(ReactApplicationContext reactContext, DataTradeModel[] dataTradeModels) {
     super(reactContext);
     this.reactContext = reactContext;
+    for (DataTradeModel dataTradeModel : dataTradeModels){
+        socketWrapper.addNotificationClass(dataTradeModel);
+    }
   }
 
   @ReactMethod

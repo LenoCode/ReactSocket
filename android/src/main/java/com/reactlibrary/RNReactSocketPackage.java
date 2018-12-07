@@ -10,14 +10,18 @@ import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 import com.facebook.react.bridge.JavaScriptModule;
+
+import socket_installer.SI_behavior.interfaces.notification.DataTradeModel;
+
 public class RNReactSocketPackage implements ReactPackage {
+    private final DataTradeModel[] dataTradeModels;
 
-    public RNReactSocketPackage(String kingkong){
-
+    public RNReactSocketPackage(DataTradeModel[] dataTradeModels){
+        this.dataTradeModels=dataTradeModels;
     }
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-      return Arrays.<NativeModule>asList(new RNReactSocketModule(reactContext));
+      return Arrays.<NativeModule>asList(new RNReactSocketModule(reactContext,dataTradeModels));
     }
 
     // Deprecated from RN 0.47
