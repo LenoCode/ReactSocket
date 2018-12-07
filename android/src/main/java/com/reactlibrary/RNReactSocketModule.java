@@ -29,7 +29,6 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void addNotificationMethods(String object,Callback callback){
     try {
-      callback.invoke("OVO JE SAMO DA PROVJERIM DA LI SE METODA UOPCE POZOVE");
       JSONObject jsonObject = new JSONObject(object);
       Callback callbacks = (Callback) jsonObject.get("test");
       callbacks.invoke("SVE JE U REDU");
