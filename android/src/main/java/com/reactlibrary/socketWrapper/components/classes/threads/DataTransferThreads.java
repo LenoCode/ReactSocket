@@ -28,7 +28,7 @@ public class DataTransferThreads extends UserMethod {
         String dataToSend = (String) bundle.getArguments(dataToSendParam);
 
         try {
-            clientCreatedSocket.runSocketNoStreamOpen(classIdent,methodIdent,dataToSend);
+            clientCreatedSocket.runSocket(classIdent,methodIdent,dataToSend);
             asyncCommunicator.addFlag(Thread.currentThread().getId(),"SendMessageStatus",true);
         } catch (IOException e) {
             Log.d("LENOO",e.getLocalizedMessage());
