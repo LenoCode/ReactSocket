@@ -21,13 +21,10 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void connectToServer(String host,int port,Callback callback){
-      callback.invoke("STATUS JE TRUE FILIPE");
+      socketWrapper.connectToServer(host,port,callback);
   }
 
-  @ReactMethod
-  public void test(Callback callback){
-    callback.invoke("King kong");
-  }
+
 
 
 
