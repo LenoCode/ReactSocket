@@ -8,11 +8,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
-import com.facebook.react.bridge.ReadableMap;
-import com.facebook.react.bridge.WritableMap;
 import com.reactlibrary.socketWrapper.SocketWrapper;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class RNReactSocketModule extends ReactContextBaseJavaModule {
 
@@ -26,14 +22,16 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void connectToServer(String host,int port,Callback callback){
-      socketWrapper.connectToServer(host,port,callback);
+
+    socketWrapper.connectToServer(host,port,callback);
   }
   @ReactMethod
-  public void addNotificationMethods(ReadableMap map){
-    if (map.hasKey("login")){
-      Toast.makeText(reactContext, map.getType("login").name(), Toast.LENGTH_SHORT).show();
-
-    }
+  public void addNotificationMethod(String methodIdent,Callback callback){
+    socketWrapper.addCallbackNotification(methodIdent,callback);
+  }
+  @ReactMethod
+  public void sendMessageToServer(String classIdent,String methodIdent,String message){
+    socketWrapper.sendMessageToServer(classIdent,methodIdent,message);
   }
 
 

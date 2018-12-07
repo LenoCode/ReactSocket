@@ -1,6 +1,8 @@
 package com.reactlibrary.socketWrapper.components.classes.notifications;
 
 
+import android.widget.Toast;
+
 import com.facebook.react.bridge.Callback;
 
 import java.util.Map;
@@ -21,7 +23,7 @@ public class ReactNotificationClass extends DataTrade {
     @MethodIdentifier(identification = "ReactMethod")
     public void reactMethod(String notification, NotificationerStatesBundle notificationerStatesBundle){
         ExternalContext externalContext = getExternalContext();
-        Map<String,Callback> callbackFunctions = (Map<String, Callback>) externalContext.getContextObject("callbackFunctions").getObject();
+        Map<String,Callback> callbackFunctions = (Map<String, Callback>) externalContext.getContextObject("HashMap").getObject();
         String[] parsedNotification = parseNotification(notification);
 
         if (callbackFunctions.containsKey(parsedNotification[0])){

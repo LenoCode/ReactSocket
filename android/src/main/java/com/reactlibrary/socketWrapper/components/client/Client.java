@@ -1,12 +1,15 @@
 package com.reactlibrary.socketWrapper.components.client;
 
 
+import com.facebook.react.bridge.Callback;
 import com.reactlibrary.socketWrapper.components.classes.threads.DataTransferThreads;
 import com.reactlibrary.socketWrapper.components.classes.threads.SocketConnectionThreads;
 import com.reactlibrary.socketWrapper.components.client.clientSocket.ClientSocket;
 import com.reactlibrary.socketWrapper.components.client.externalInitializator.ExternalContextInitializator;
 import com.reactlibrary.socketWrapper.components.client.notificationer.ClientNotificationer;
 import com.reactlibrary.socketWrapper.components.threadCaller.AndroidThreadCaller;
+
+import java.util.Map;
 
 import async_communicator.thread_id_holder.ThreadIdHolder;
 
@@ -17,9 +20,9 @@ public class Client {
     private ClientSocket clientSocket;
 
 
-    public ThreadIdHolder configureSocket(String host, int port,DataTradeModel[] dataTradeModels){
+    public ThreadIdHolder configureSocket(String host, int port,DataTradeModel[] dataTradeModels,Map<String,Callback> callbackMap){
         clientSocket = new ClientSocket();
-        return clientSocket.configure(host,port,initClientNotificationer(dataTradeModels));
+        return clientSocket.configure(host,port,initClientNotificationer(dataTradeModels,callbackMap));
     }
 
     public boolean isConnectedToServer(){
@@ -45,8 +48,8 @@ public class Client {
     }
 
 
-    private ClientNotificationer initClientNotificationer(DataTradeModel[] dataTradeModels){
-        ExternalContextInitializator contextInitializator = new ExternalContextInitializator();
+    private ClientNotificationer initClientNotificationer(DataTradeModel[] dataTradeModels, Map<String,Callback> callbackMap){
+        ExternalContextInitializator contextInitializator = new ExternalContextInitializator(callbackMap);
         return new ClientNotificationer(dataTradeModels,contextInitializator);
     }
 
