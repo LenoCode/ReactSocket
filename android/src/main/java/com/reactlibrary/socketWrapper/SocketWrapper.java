@@ -4,6 +4,8 @@ import com.reactlibrary.socketWrapper.components.classes.notifications.ReactNoti
 import com.reactlibrary.socketWrapper.components.client.Client;
 import com.facebook.react.bridge.Callback;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,18 +17,21 @@ public class SocketWrapper {
     private final AsyncCommunicator asyncCommunicator = AsyncCommunicator.getAsyncCommunicator();
     private final Client client;
     private final Map<String,Callback> callbacks;
-    private final DataTradeModel dataTradeModel[];
+    private final ArrayList<DataTradeModel> dataTradeModel;
 
     public SocketWrapper() {
         client = new Client();
         callbacks = new HashMap<>();
-        dataTradeModel= new DataTradeModel[]{
-                new ReactNotificationClass()
-        };
+        dataTradeModel= new ArrayList<>();
+
+        dataTradeModel.add(new ReactNotificationClass());
     }
 
     public void addCallbackNotification(String methodIdent,Callback callback){
         callbacks.put(methodIdent,callback);
+    }
+    public void addNotificationClass(DataTradeModel notificationClass){
+        dataTradeModel.add(notificationClass);
     }
 
     public void sendMessageToServer(String classIdent,String methodIdent,String message,Callback callback){
@@ -36,7 +41,7 @@ public class SocketWrapper {
     }
 
     public void connectToServer(String host,int port,Callback callback){
-        ThreadIdHolder threadIdHolder = client.configureSocket(host,port,dataTradeModel,callbacks);
+        ThreadIdHolder threadIdHolder = client.configureSocket(host,port,dataTradeModel.toArray(new DataTradeModel[dataTradeModel.size()]),callbacks);
         AsyncCommunicator asyncCommunicator = AsyncCommunicator.getAsyncCommunicator();
 
         boolean connection = asyncCommunicator.waitForFlagAndRemove(threadIdHolder.getThreadId(),"Connection");
