@@ -33,7 +33,7 @@ repositories {
 }
 
 dependencies {
-    implementation fileTree(dir: libsDirName, include: ['*.jar'])
+    api fileTree(dir: libsDirName, include: ['*.jar'])
     implementation "com.facebook.react:react-native:+"
     implementation "com.polidea.rxandroidble:rxandroidble:1.7.0"
 }
