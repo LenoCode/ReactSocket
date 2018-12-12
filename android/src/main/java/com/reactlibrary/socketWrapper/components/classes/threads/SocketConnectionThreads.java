@@ -35,7 +35,7 @@ public class SocketConnectionThreads extends UserMethod {
             Socket socket = new Socket();
             socket.connect(new InetSocketAddress(host,port));
 
-            ClientCreatedSocket clientCreatedSocket = ClientSocketCreator.createClientCreatedSocket(notificationerActions,socket,0);
+            ClientCreatedSocket clientCreatedSocket = ClientSocketCreator.createClientCreatedSocket(notificationerActions,socket,10);
             clientSocket.setClientCreatedSocket(clientCreatedSocket);
             clientCreatedSocket.initSocket();
             clientSocket.setClientCreatedSocket(clientCreatedSocket);
