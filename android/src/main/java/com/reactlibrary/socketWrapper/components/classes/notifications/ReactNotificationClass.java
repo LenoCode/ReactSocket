@@ -33,7 +33,7 @@ public class ReactNotificationClass extends DataTrade {
 
 
     private String[] parseNotification(String notification){
-        int indexSeperator = notification.indexOf("|");
+        int indexSeperator = notification.indexOf("±");
         String reactMethodIdent = notification.substring(0,indexSeperator);
         String reactNotification = notification.substring(indexSeperator+1);
 
