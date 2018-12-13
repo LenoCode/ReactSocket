@@ -36,6 +36,10 @@ public class Client {
         return AndroidThreadCaller.callThreadAndReturnId(DataTransferThreads.class,"sendMessageToServerThread",classIdent,methodIdent,dataToSend,clientSocket.getClientCreatedSocket());
 
     }
+    public ThreadIdHolder sendMessageToServerNoResponse(String classIdent, String methodIdent, String dataToSend){
+        return AndroidThreadCaller.callThreadAndReturnId(DataTransferThreads.class,"sendMessageToServerThreadNoResponse",classIdent,methodIdent,dataToSend,clientSocket.getClientCreatedSocket());
+
+    }
 
     public ClientNotificationer getClientNotificationer(){
         return (ClientNotificationer) clientSocket.getClientCreatedSocket().getClient().getNotificationer();

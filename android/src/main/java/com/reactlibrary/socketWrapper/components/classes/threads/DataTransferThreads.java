@@ -39,4 +39,26 @@ public class DataTransferThreads extends UserMethod {
         }
     }
 
+
+    @ThreadMethod(paramNames = {classIdentParam,methodIdentParam,dataToSendParam, clientCreatedSocketParam})
+    public void sendMessageToServerThreadNoResponse(Bundle bundle) {
+        AsyncCommunicator asyncCommunicator = AsyncCommunicator.getAsyncCommunicator();
+        ClientCreatedSocket clientCreatedSocket = (ClientCreatedSocket) bundle.getArguments(clientCreatedSocketParam);
+        String classIdent = (String) bundle.getArguments(classIdentParam);
+        String methodIdent = (String) bundle.getArguments(methodIdentParam);
+        String dataToSend = (String) bundle.getArguments(dataToSendParam);
+
+        try {
+            clientCreatedSocket.runSocketNoStreamOpen(classIdent,methodIdent,dataToSend);
+            asyncCommunicator.addFlag(Thread.currentThread().getId(),"SendMessageStatus",true);
+        } catch (IOException e) {
+            Log.d("LENOO",e.getLocalizedMessage());
+            asyncCommunicator.addFlag(Thread.currentThread().getId(),"SendMessageStatus",false);
+        } catch (SocketExceptions socketExceptions) {
+            Log.d("LENOO",socketExceptions.getLocalizedMessage());
+            asyncCommunicator.addFlag(Thread.currentThread().getId(),"SendMessageStatus",false);
+        }
+    }
+
+
 }
