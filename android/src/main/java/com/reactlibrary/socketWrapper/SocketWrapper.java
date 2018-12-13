@@ -39,11 +39,6 @@ public class SocketWrapper {
         boolean flag = asyncCommunicator.waitForFlagAndRemove(idHolder.getThreadId(),"SendMessageStatus");
         callback.invoke(flag);
     }
-    public void sendMessageToServerNoResponse(String classIdent,String methodIdent,String message,Callback callback){
-        ThreadIdHolder idHolder = client.sendMessageToServerNoResponse(classIdent,methodIdent,message);
-        boolean flag = asyncCommunicator.waitForFlagAndRemove(idHolder.getThreadId(),"SendMessageStatus");
-        callback.invoke(flag);
-    }
 
     public void connectToServer(String host,int port,Callback callback){
         ThreadIdHolder threadIdHolder = client.configureSocket(host,port,dataTradeModel.toArray(new DataTradeModel[dataTradeModel.size()]),callbacks);

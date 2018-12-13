@@ -37,10 +37,6 @@ public class RNReactSocketModule extends ReactContextBaseJavaModule {
   public void sendMessageToServer(String classIdent,String methodIdent,String message,Callback callback){
     socketWrapper.sendMessageToServer(classIdent,methodIdent,message,callback);
   }
-  @ReactMethod
-  public void sendMessageToServerNoResponse(String classIdent,String methodIdent,String message,Callback callback){
-    socketWrapper.sendMessageToServerNoResponse(classIdent,methodIdent,message,callback);
-  }
 
 
 
